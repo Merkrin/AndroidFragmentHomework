@@ -1,8 +1,10 @@
-package com.merkrin.androidfragmenthomework;
+package com.merkrin.androidfragmenthomework.userInterface;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.merkrin.androidfragmenthomework.R;
 
 public class MainActivity extends AppCompatActivity {
 
