@@ -22,4 +22,12 @@ public class NumberItem {
     public int getColor(){
         return color;
     }
+    public int getNumber(){
+        return number;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
+    }
 }
