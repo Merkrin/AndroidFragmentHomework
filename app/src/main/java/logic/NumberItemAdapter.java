@@ -61,12 +61,10 @@ public class NumberItemAdapter extends RecyclerView.Adapter<NumberItemAdapter.Nu
 
     static class NumberViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
-        private ConstraintLayout itemLayout;
 
         NumberViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView);
-            itemLayout = itemView.findViewById(R.id.itemLayout);
         }
 
         void bind(NumberItem numberItem) {

@@ -61,6 +61,13 @@ public class NumbersListFragment extends Fragment {
             maximalNumber = sharedPreferences.getInt(APP_PREFERENCES_MAX_NUMBER, 100);
         }
         numberItemAdapter.setItems(maximalNumber);
+
+        view.findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addNumber();
+            }
+        });
     }
 
     private void setColumns() {
@@ -72,16 +79,26 @@ public class NumbersListFragment extends Fragment {
 
         // GetActivity returns Activity that is a Context
         GridLayoutManager manager = new GridLayoutManager(getActivity(), columnsAmount);
+
         numbersList.setLayoutManager(manager);
     }
 
     private void initializeRecyclerView(View view) {
         numbersList = view.findViewById(R.id.numbersList);
-        numbersList.setHasFixedSize(true);
-
-        setColumns();
+        //numbersList.setHasFixedSize(true);
 
         numberItemAdapter = new NumberItemAdapter();
         numbersList.setAdapter(numberItemAdapter);
+
+        setColumns();
+    }
+
+    private void addNumber(){
+        maximalNumber++;
+
+        numberItemAdapter.setItems(maximalNumber);
+
+        editor.putInt(APP_PREFERENCES_MAX_NUMBER, maximalNumber);
+        editor.commit();
     }
 }
