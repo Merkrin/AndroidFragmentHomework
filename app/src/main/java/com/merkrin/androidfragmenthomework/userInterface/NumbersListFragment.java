@@ -33,8 +33,12 @@ public class NumbersListFragment extends Fragment {
     private int maximalNumber = 100;
 
     // Constant strings for working process simplification.
-    public static final String APP_PREFERENCES = "application_settings";
-    public static final String APP_PREFERENCES_MAX_NUMBER = "maximal_number";
+    private static final String APP_PREFERENCES = "application_settings";
+    private static final String APP_PREFERENCES_MAX_NUMBER = "maximal_number";
+
+    // Constant values for columns amount in grid of recycler view
+    private final int PORTRAIT_MODE_COLUMNS_AMOUNT = 3;
+    private final int LANDSCAPE_MODE_COLUMNS_AMOUNT = 4;
 
     // SharedPreferences that are used to restore state.
     SharedPreferences sharedPreferences;
@@ -87,10 +91,10 @@ public class NumbersListFragment extends Fragment {
      * Method to set amount of columns in the recycler view.
      */
     private void setColumns() {
-        int columnsAmount = 3;
+        int columnsAmount = PORTRAIT_MODE_COLUMNS_AMOUNT;
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            columnsAmount = 4;
+            columnsAmount = LANDSCAPE_MODE_COLUMNS_AMOUNT;
         }
 
         // Set grid layout with given columns amount.
