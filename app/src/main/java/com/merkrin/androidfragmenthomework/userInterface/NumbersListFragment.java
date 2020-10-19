@@ -16,13 +16,9 @@ import android.view.ViewGroup;
 
 import com.merkrin.androidfragmenthomework.R;
 
-import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Set;
 
-import logic.NumberItem;
 import logic.NumberItemAdapter;
-import logic.NumberViewHolder;
 
 public class NumbersListFragment extends Fragment {
     private RecyclerView numbersList;
@@ -36,17 +32,11 @@ public class NumbersListFragment extends Fragment {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
-    public NumbersListFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View currentView = inflater.inflate(R.layout.fragment_numbers_list, container,
+        return inflater.inflate(R.layout.fragment_numbers_list, container,
                 false);
-
-        return currentView;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -62,12 +52,7 @@ public class NumbersListFragment extends Fragment {
         }
         numberItemAdapter.setItems(maximalNumber);
 
-        view.findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addNumber();
-            }
-        });
+        view.findViewById(R.id.addButton).setOnClickListener(view1 -> addNumber());
     }
 
     private void setColumns() {
@@ -85,7 +70,6 @@ public class NumbersListFragment extends Fragment {
 
     private void initializeRecyclerView(View view) {
         numbersList = view.findViewById(R.id.numbersList);
-        //numbersList.setHasFixedSize(true);
 
         numberItemAdapter = new NumberItemAdapter(view.getContext());
         numbersList.setAdapter(numberItemAdapter);

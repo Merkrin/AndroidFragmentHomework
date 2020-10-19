@@ -3,7 +3,7 @@ package logic;
 import android.graphics.Color;
 
 public class NumberItem {
-    private int number;
+    private final int number;
     private int color;
 
     public NumberItem(int number){
