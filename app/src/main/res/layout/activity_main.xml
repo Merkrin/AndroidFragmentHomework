@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".userInterface.MainActivity">
+    tools:context=".userInterface.MainActivity"
+    android:id="@+id/container">
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="com.merkrin.androidfragmenthomework.userInterface.NumbersListFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_numbers_list" />
+<!--    <fragment-->
+<!--        android:id="@+id/fragment"-->
+<!--        android:name="com.merkrin.androidfragmenthomework.userInterface.NumbersListFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:layout="@layout/fragment_numbers_list" />-->
 </LinearLayout>
