@@ -1,5 +1,7 @@
 package com.merkrin.androidfragmenthomework.userInterface;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,15 +15,19 @@ import android.widget.TextView;
 
 import com.merkrin.androidfragmenthomework.R;
 
+import java.util.Objects;
+
 import logic.NumberItem;
 
 public class BigNumberFragment extends Fragment {
     private NumberItem numberItem;
     private TextView bigNumber;
 
-    public BigNumberFragment() {
-        // Required empty public constructor
-    }
+    public static final String APP_PREFERENCES = "application_settings";
+    public static final String APP_PREFERENCES_CURRENT_NUMBER = "current_number";
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,14 +46,33 @@ public class BigNumberFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         bigNumber = view.findViewById(R.id.bigNumber);
+        sharedPreferences = Objects.requireNonNull(this.getActivity())
+                .getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
-        if(numberItem != null){
-            bigNumber.setTextColor(numberItem.getColor());
-            bigNumber.setText(numberItem.toString());
+        if (numberItem == null) {
+            if (sharedPreferences.contains(APP_PREFERENCES_CURRENT_NUMBER)) {
+                numberItem = new NumberItem(sharedPreferences.getInt(APP_PREFERENCES_CURRENT_NUMBER,
+                        1));
+            }
+        }else{
+            editor.putInt(APP_PREFERENCES_CURRENT_NUMBER, this.numberItem.getNumber());
+            editor.commit();
         }
+
+        bigNumber.setTextColor(numberItem.getColor());
+        bigNumber.setText(numberItem.toString());
     }
 
-    public void initializeNumber(NumberItem numberItem){
+    public void initializeNumber(NumberItem numberItem) {
         this.numberItem = numberItem;
     }
+
+    /*        sharedPreferences = Objects.requireNonNull(this.getActivity())
+                .getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        if (sharedPreferences.contains(APP_PREFERENCES_CURRENT_NUMBER)) {
+            numberItem = new NumberItem(sharedPreferences.getInt(APP_PREFERENCES_CURRENT_NUMBER,
+                    1));
+        }*/
 }

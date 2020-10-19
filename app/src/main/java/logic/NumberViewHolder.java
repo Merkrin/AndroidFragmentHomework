@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.merkrin.androidfragmenthomework.R;
@@ -12,7 +11,7 @@ import com.merkrin.androidfragmenthomework.userInterface.BigNumberFragment;
 import com.merkrin.androidfragmenthomework.userInterface.MainActivity;
 
 public class NumberViewHolder extends RecyclerView.ViewHolder {
-    private TextView textView;
+    private final TextView textView;
     private Context context;
 
     NumberViewHolder(View itemView) {
@@ -25,14 +24,11 @@ public class NumberViewHolder extends RecyclerView.ViewHolder {
         textView.setText(numberItem.toString());
         textView.setTextColor(numberItem.getColor());
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                BigNumberFragment bigNumberFragment = new BigNumberFragment();
-                bigNumberFragment.initializeNumber(numberItem);
+        itemView.setOnClickListener(view -> {
+            BigNumberFragment bigNumberFragment = new BigNumberFragment();
+            bigNumberFragment.initializeNumber(numberItem);
 
-                ((MainActivity)context).setFragment(bigNumberFragment);
-            }
+            ((MainActivity)context).setFragment(bigNumberFragment);
         });
     }
 
