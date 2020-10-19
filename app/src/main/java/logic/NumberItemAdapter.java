@@ -1,5 +1,6 @@
 package logic;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,13 @@ import com.merkrin.androidfragmenthomework.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NumberItemAdapter extends RecyclerView.Adapter<NumberItemAdapter.NumberViewHolder> {
+public class NumberItemAdapter extends RecyclerView.Adapter<NumberViewHolder> {
     private List<NumberItem> numberItemList = new ArrayList<>();
+    private Context context;
+
+    public NumberItemAdapter(Context context){
+        this.context = context;
+    }
 
     public void setItems(int maximalNumber) {
         int lastItem = 0;
@@ -39,6 +45,10 @@ public class NumberItemAdapter extends RecyclerView.Adapter<NumberItemAdapter.Nu
         notifyDataSetChanged();
     }
 
+    public NumberItem getItem(int index){
+        return numberItemList.get(index);
+    }
+
     @NonNull
     @Override
     public NumberViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -52,24 +62,11 @@ public class NumberItemAdapter extends RecyclerView.Adapter<NumberItemAdapter.Nu
     @Override
     public void onBindViewHolder(@NonNull NumberViewHolder holder, int position) {
         holder.bind(numberItemList.get(position));
+        holder.setContext(context);
     }
 
     @Override
     public int getItemCount() {
         return numberItemList.size();
-    }
-
-    static class NumberViewHolder extends RecyclerView.ViewHolder {
-        private TextView textView;
-
-        NumberViewHolder(View itemView) {
-            super(itemView);
-            textView = itemView.findViewById(R.id.textView);
-        }
-
-        void bind(NumberItem numberItem) {
-            textView.setText(numberItem.toString());
-            textView.setTextColor(numberItem.getColor());
-        }
     }
 }

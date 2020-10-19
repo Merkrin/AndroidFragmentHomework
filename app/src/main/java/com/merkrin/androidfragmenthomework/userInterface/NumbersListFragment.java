@@ -22,9 +22,9 @@ import java.util.Set;
 
 import logic.NumberItem;
 import logic.NumberItemAdapter;
+import logic.NumberViewHolder;
 
 public class NumbersListFragment extends Fragment {
-    View currentView;
     private RecyclerView numbersList;
     private NumberItemAdapter numberItemAdapter;
 
@@ -87,7 +87,7 @@ public class NumbersListFragment extends Fragment {
         numbersList = view.findViewById(R.id.numbersList);
         //numbersList.setHasFixedSize(true);
 
-        numberItemAdapter = new NumberItemAdapter();
+        numberItemAdapter = new NumberItemAdapter(view.getContext());
         numbersList.setAdapter(numberItemAdapter);
 
         setColumns();
